@@ -6,6 +6,10 @@ authors = ["Daniil <dadyarri@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+tortoise-orm = "^0.17.8"
+asyncpg = "^0.24.0"
+aerich = "^0.5.8"
+aiogram = "^2.15"
 
 
 [build-system]

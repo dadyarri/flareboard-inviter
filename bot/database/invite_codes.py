@@ -3,7 +3,7 @@ from tortoise.transactions import in_transaction
 from bot.database.models import InviteCode
 
 
-def get_invite_code():
+async def get_invite_code():
     """
     Получает первый не использованный код приглашения
 
@@ -14,7 +14,7 @@ def get_invite_code():
         return InviteCode.filter(activated_by=None).first()
 
 
-def invalidate_invite_code(code: InviteCode, tg_id: int):
+async def invalidate_invite_code(code: InviteCode, tg_id: int):
     """
     Помечает код приглашения невалидным
 

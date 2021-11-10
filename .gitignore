@@ -1,4 +1,5 @@
 .idea
 .env
-
+db_data
 /database.env
+__pycache__

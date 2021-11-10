@@ -31,12 +31,6 @@ async def _get_token(message: types.Message):
             await message.answer("Коды закончились :(")
 
 
-@dp.message_handler(Command("insert"))
-async def _add_codes(message: types.Message):
-    for _ in range(10):
-        await InviteCode.create(code=str(random.getrandbits(45)))
-    await message.answer("Коды сгенерированы")
-
 if __name__ == '__main__':
     asyncio.get_event_loop().run_until_complete(init_db_connection())
     executor.start_polling(dp, skip_updates=False)

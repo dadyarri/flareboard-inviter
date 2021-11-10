@@ -21,11 +21,15 @@ services:
 
   telegram:
     container_name: invite_tg
+    depends_on:
+      - postgres
     build: ./bot
     env_file: .env
     command: python /code/bot/main.py
     volumes:
       - ./bot:/code/bot
+    networks:
+      - net
 
 volumes:
   db_data: {}

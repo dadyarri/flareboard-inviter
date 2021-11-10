@@ -2,27 +2,22 @@ version: "3.7"
 
 services:
 
-  postgres:
+  invite_postgres:
     container_name: invite_postgres
-    image: postgres:13.3
-    environment:
-      POSTGRES_DB: "invitebot"
-      POSTGRES_USER: "dadyarri"
-      POSTGRES_PASSWORD: "mjro10011"
-      PGDATA: "/var/lib/postgresql/data/pgdata"
+    image: "postgres:13.4"
+    env_file: database.env
     volumes:
-      - /dump.sql:/docker-entrypoint-initdb.d
-      - db_data:/var/lib/postgresql/data
+      - ./db_data:/var/lib/postgresql/data
     ports:
-      - "10001:5433"
+      - "10001:5432"
     restart: always
     networks:
       - net
 
-  telegram:
+  invite_telegram:
     container_name: invite_tg
     depends_on:
-      - postgres
+      - invite_postgres
     build: ./bot
     env_file: .env
     command: python /code/bot/main.py
@@ -32,7 +27,7 @@ services:
       - net
 
 volumes:
-  db_data: {}
+  db_data:
 
 networks:
   net:

@@ -34,7 +34,7 @@ async def _get_token(message: types.Message):
 @dp.message_handler(Command("insert"))
 async def _add_codes(message: types.Message):
     for _ in range(10):
-        await InviteCode.create(code=str(random.getrandbits(4)))
+        await InviteCode.create(code=str(random.getrandbits(45)))
     await message.answer("Коды сгенерированы")
 
 if __name__ == '__main__':

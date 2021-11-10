@@ -27,3 +27,17 @@ async def invalidate_invite_code(code: InviteCode, tg_id: int):
     """
     async with in_transaction():
         return await InviteCode.filter(id=code.id).update(activated_by=tg_id)
+
+
+async def user_got_code(tg_id: int) -> bool:
+    """
+    Проверяет, получал ли пользователь код
+
+    Args:
+        tg_id: ИД пользователя
+
+    Returns:
+        bool: Флаг получения пользователем кода
+    """
+    async with in_transaction():
+        return bool(await InviteCode.get_or_none(activated_by=tg_id))

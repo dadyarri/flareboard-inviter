@@ -21,9 +21,9 @@ services:
 
   telegram:
     container_name: invite_tg
-    build: ./tg
+    build: ./bot
     env_file: .env
-    command: python /code/tg/main.py
+    command: python /code/bot/main.py
     volumes:
       - ./bot:/code/bot
 

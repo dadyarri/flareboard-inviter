@@ -19,13 +19,13 @@ dp = Dispatcher(bot)
 @dp.message_handler(CommandStart())
 async def _get_token(message: types.Message):
     await message.answer("Привет!")
-    if user_got_code(message.from_user.id):
+    if await user_got_code(message.from_user.id):
         await message.answer("Ты уже получил свой код регистрации!")
     else:
         code = await get_invite_code()
         if code is not None:
-            await message.answer("Твой код регистрации для <название сайта>:")
-            await message.answer("`{}`".format(code.code), parse_mode="MarkdownV2")
+            await message.answer("Твой код регистрации для FlareBoard:")
+            await message.answer("https://flareboard.ru/signup.php?ref={}".format(code.code))
             await invalidate_invite_code(code, message.from_user.id)
         else:
             await message.answer("Коды закончились :(")

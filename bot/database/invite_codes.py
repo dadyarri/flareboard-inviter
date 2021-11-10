@@ -11,7 +11,7 @@ async def get_invite_code():
         InviteCode: код приглашения
     """
     async with in_transaction():
-        return InviteCode.filter(activated_by=None).first()
+        return await InviteCode.filter(activated_by=None).first()
 
 
 async def invalidate_invite_code(code: InviteCode, tg_id: int):

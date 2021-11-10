@@ -7,7 +7,7 @@ TORTOISE_ORM = {
     "apps": {
         "models": {
             "models": [
-                "database.models",
+                "bot.database.models",
                 "aerich.models",
             ],
         },

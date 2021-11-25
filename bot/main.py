@@ -25,7 +25,7 @@ async def _get_token(message: types.Message):
         code = await get_invite_code()
         if code is not None:
             await message.answer("Твой код регистрации для FlareBoard:")
-            await message.answer("https://flareboard.ru/signup.php?ref={}".format(code.code))
+            await message.answer("`{}`".format(code.code), parse_mode="MarkdownV2")
             await invalidate_invite_code(code, message.from_user.id)
         else:
             await message.answer("Коды закончились :(")

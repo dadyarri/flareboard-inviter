@@ -1,13 +1,11 @@
 import asyncio
 import logging
-import random
 
 from aiogram import Bot, Dispatcher, types
-from aiogram.dispatcher.filters import CommandStart, Command
+from aiogram.dispatcher.filters import CommandStart
 from aiogram.utils import executor
 
 from bot.database.core.init import init_db_connection
-from bot.database.models import InviteCode
 from database.invite_codes import get_invite_code, user_got_code, invalidate_invite_code
 from database.utils import get_tg_token
 
